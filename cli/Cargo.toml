@@ -1,0 +1,3 @@
+[lib]
+name = "deno_cli_lib"
+path = "lib.rs"
