@@ -2,6 +2,11 @@
 
 Deno CLI Lib is Deno CLI as a Rust Library. It's designed for embedding Deno CLI into Rust applications or libraries.
 
+Why do I need this project?
+
+1. Deno doesn't expose Deno CLI as a Rust library.
+2. There are some CLI features no available at `deno_runtime`, `deno_core`, `deno_ops`.
+
 ## Usage
 
 ### Patch Deno
