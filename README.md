@@ -1,5 +1,7 @@
 # Deno CLI Lib
 
+[![Deno Test Build](https://github.com/caoccao/deno_cli_lib/actions/workflows/deno_test_build.yml/badge.svg)](https://github.com/caoccao/deno_cli_lib/actions/workflows/deno_test_build.yml)
+
 Deno CLI Lib is Deno CLI as a Rust Library. It's designed for embedding Deno CLI into Rust applications or libraries.
 
 Why do I need this project?
