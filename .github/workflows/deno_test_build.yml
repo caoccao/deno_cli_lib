@@ -40,7 +40,7 @@ jobs:
 
     - name: Setup Other Dependencies
       run: |
-        apt-get install protobuf-compiler
+        sudo apt-get install protobuf-compiler
 
     - name: Patch Deno
       run: |
