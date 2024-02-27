@@ -38,6 +38,10 @@ jobs:
         cd ..
         git clone https://github.com/denoland/deno.git
 
+    - name: Setup Other Dependencies
+      run: |
+        apt-get install protobuf-compiler
+
     - name: Patch Deno
       run: |
         deno run --allow-all scripts/ts/patch_deno.ts
