@@ -11,26 +11,28 @@ Why do I need this project?
 
 ### Patch Deno
 
-- Clone Deno
+Run a patch script that patches the Deno repository to expose Deno as a Rust library. Here are the steps.
+
+- Clone Deno - The Deno repository is required to be cloned locally.
 
 ```sh
 git clone https://github.com/denoland/deno.git
 ```
 
-- Clone Deno CLI Lib
+- Clone Deno CLI Lib - This repository is required to be cloned with Deno side by side.
 
 ```sh
 git clone https://github.com/caoccao/deno_cli_lib.git
 ```
 
-- Run the patch script
+- Run the Patch Script - The patch script adds `lib.rs` to Deno CLI and update `Cargo.toml` by adding section `[lib]`.
 
 ```sh
 cd deno_cli_lib
 deno run --allow-all scripts/ts/patch_deno.ts
 ```
 
-- Wait for the patch script to complete
+- Wait for the Patch Script to Complete - The patch takes less than 1s.
 
 ## License
 
