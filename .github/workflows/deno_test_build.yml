@@ -49,4 +49,5 @@ jobs:
     - name: Cargo Test
       run: |
         cd deno-test
+        export RUSTFLAGS=-Awarnings
         cargo test
