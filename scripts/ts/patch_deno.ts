@@ -22,14 +22,16 @@ import * as fs from "https://deno.land/std/fs/mod.ts"
 import * as path from "https://deno.land/std/path/mod.ts"
 
 const CARGO_TOML = 'Cargo.toml'
+const CLI = 'cli'
 const LIB_RS = 'lib.rs'
 const VERSION = '0.1.0'
 
 function patchDeno(denoRepoDirPath: string): Number {
-  const sourceDirPath = path.dirname(path.fromFileUrl(import.meta.url))
+  const scriptDirPath = path.dirname(path.fromFileUrl(import.meta.url))
+  const sourceDirPath = path.join(scriptDirPath, '../../', CLI)
   const targetDirPath = fs.existsSync(denoRepoDirPath)
     ? denoRepoDirPath
-    : path.join(sourceDirPath, '../', denoRepoDirPath, './cli')
+    : path.join(scriptDirPath, '../../../', denoRepoDirPath, CLI)
   if (fs.existsSync(targetDirPath)) {
     console.info(`%cFound ${targetDirPath}.`, 'color: green')
   } else {

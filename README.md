@@ -26,8 +26,8 @@ git clone https://github.com/caoccao/deno_cli_lib.git
 - Run the patch script
 
 ```sh
-cd deno_cli_lib/cli
-deno run --allow-all patch_deno.ts
+cd deno_cli_lib
+deno run --allow-all scripts/ts/patch_deno.ts
 ```
 
 - Wait for the patch script to complete
