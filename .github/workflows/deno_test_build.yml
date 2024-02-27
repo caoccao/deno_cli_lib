@@ -1,0 +1,48 @@
+name: Deno Test Build
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - "**.md"
+      - "docs/**"
+
+jobs:
+  build_deno_test:
+    name: Build Deno Test
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Checkout the code
+      uses: actions/checkout@v4
+
+    - name: Setup Rust
+      uses: actions-rust-lang/setup-rust-toolchain@v1
+      with:
+        toolchain: stable
+
+    - name: Setup Deno
+      uses: denoland/setup-deno@v1
+      with:
+        deno-version: vx.x.x
+
+    - name: Clone Deno
+      run: |
+        cd ..
+        git clone https://github.com/denoland/deno.git
+
+    - name: Patch Deno
+      run: |
+        deno run --allow-all scripts/ts/patch_deno.ts
+
+    - name: Cargo Test
+      run: |
+        cd deno-test
+        cargo test
