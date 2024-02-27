@@ -34,6 +34,26 @@ deno run --allow-all scripts/ts/patch_deno.ts
 
 - Wait for the Patch Script to Complete - The patch takes less than 1s.
 
+### Reference Deno
+
+- Add the following dependency to your `Cargo.toml`.
+
+```ini
+[dependencies]
+deno = { path = "/path/to/deno/cli" }
+```
+
+- Enjoy!
+
+```rust
+use deno::deno_core::*;
+fn main() {
+  println!("V8 version: {}", v8_version());
+}
+
+// V8 version: *.*.*.*
+```
+
 ## License
 
 [APACHE LICENSE, VERSION 2.0](LICENSE)

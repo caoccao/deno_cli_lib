@@ -15,7 +15,7 @@
 * limitations under the License.
 */
 
-// Usage: deno run --allow-all patch_deno.ts
+// Usage: deno run --allow-all scripts/ts/patch_deno.ts
 
 import * as flags from "https://deno.land/std/flags/mod.ts"
 import * as fs from "https://deno.land/std/fs/mod.ts"
@@ -91,7 +91,7 @@ const args = flags.parse(Deno.args, {
   ],
   default: {
     help: false,
-    path: "../deno",
+    path: "../deno/cli",
     version: false,
   },
 })
