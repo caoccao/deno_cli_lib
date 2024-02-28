@@ -61,6 +61,7 @@ fn main() {
 | Example | Description |
 | ------- | ----------- |
 | [shell](deno-test/src/main.rs) | A simple console shell |
+| [ast](deno-test/tests/test_ast.rs) | Test cases for `deno::deno_ast` |
 | [core](deno-test/tests/test_core.rs) | Test cases for `deno::deno_core` |
 | [tsc](deno-test/tests/test_tsc.rs) | Test cases for `deno::tsc` |
 
