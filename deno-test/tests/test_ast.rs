@@ -18,12 +18,12 @@
 use deno::deno_ast::*;
 
 #[test]
-fn test_ast_transpile() {
-  let specifier = ModuleSpecifier::parse("https://deno.land/x/mod.ts").unwrap();
+fn test_ast_parse_module() {
+  let url = ModuleSpecifier::parse("file:///test.ts").unwrap();
   let ts_code = "function add(x: Number, y: Number) { return x + y; }";
   let expected_js_code = "function add(x, y) {\n  return x + y;\n}";
-  let module = parse_module(ParseParams {
-    specifier,
+  let parsed_source = parse_module(ParseParams {
+    specifier: url,
     text_info: SourceTextInfo::from_string(ts_code.to_string()),
     media_type: MediaType::TypeScript,
     capture_tokens: false,
@@ -31,7 +31,39 @@ fn test_ast_transpile() {
     scope_analysis: false,
   })
   .unwrap();
-  let transpiled_js_code = module.transpile(&EmitOptions::default()).unwrap();
+  assert_eq!(parsed_source.specifier().as_str(), "file:///test.ts");
+  assert_eq!(parsed_source.text_info().text_str(), ts_code);
+  assert_eq!(parsed_source.media_type(), MediaType::TypeScript);
+  let transpiled_js_code = parsed_source.transpile(&EmitOptions::default()).unwrap();
+  assert_eq!(expected_js_code, &transpiled_js_code.text[..expected_js_code.len()]);
+  assert!(transpiled_js_code
+    .text
+    .contains("\n//# sourceMappingURL=data:application/json;base64,"));
+  assert!(transpiled_js_code.source_map.is_none());
+}
+
+#[test]
+fn test_ast_parse_program() {
+  let url = ModuleSpecifier::parse("file:///test.ts").unwrap();
+  let ts_code = "function add(x: Number, y: Number) { return x + y; }";
+  let expected_js_code = "function add(x, y) {\n  return x + y;\n}";
+  let parsed_source = parse_program(ParseParams {
+    specifier: url,
+    text_info: SourceTextInfo::from_string(ts_code.to_string()),
+    media_type: MediaType::TypeScript,
+    capture_tokens: false,
+    maybe_syntax: None,
+    scope_analysis: false,
+  })
+  .unwrap();
+  assert_eq!(parsed_source.specifier().as_str(), "file:///test.ts");
+  assert_eq!(parsed_source.text_info().text_str(), ts_code);
+  assert_eq!(parsed_source.media_type(), MediaType::TypeScript);
+  assert!(matches!(
+    parsed_source.script().body[0],
+    crate::swc::ast::Stmt::Decl(..)
+  ));
+  let transpiled_js_code = parsed_source.transpile(&EmitOptions::default()).unwrap();
   assert_eq!(expected_js_code, &transpiled_js_code.text[..expected_js_code.len()]);
   assert!(transpiled_js_code
     .text
