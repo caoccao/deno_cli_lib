@@ -1,3 +1,4 @@
+pub use deno_ast;
 pub use deno_core;
 pub use deno_graph;
 pub use deno_npm;
