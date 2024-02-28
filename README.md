@@ -60,9 +60,9 @@ fn main() {
 
 | Example | Description |
 | ------- | ----------- |
-| [shell](deno_test/src/main.rs) | A simple console shell |
-| [core](tests/test_core.rs) | Test cases for `deno::deno_core` |
-| [tsc](tests/test_tsc.rs) | Test cases for `deno::tsc` |
+| [shell](deno-test/src/main.rs) | A simple console shell |
+| [core](deno-test/tests/test_core.rs) | Test cases for `deno::deno_core` |
+| [tsc](deno-test/tests/test_tsc.rs) | Test cases for `deno::tsc` |
 
 ## License
 
