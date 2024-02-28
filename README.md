@@ -56,6 +56,14 @@ fn main() {
 // V8 version: *.*.*.*
 ```
 
+## Examples
+
+| Example | Description |
+| ------- | ----------- |
+| [shell](deno_test/src/main.rs) | A simple console shell |
+| [core](tests/test_core.rs) | Test cases for `deno::deno_core` |
+| [tsc](tests/test_tsc.rs) | Test cases for `deno::tsc` |
+
 ## License
 
 [APACHE LICENSE, VERSION 2.0](LICENSE)
