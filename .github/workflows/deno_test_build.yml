@@ -15,8 +15,12 @@ on:
 
 jobs:
   build_deno_test:
-    name: Build Deno Test
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest, macos-14]
+
+    name: Build ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
 
     steps:
 
