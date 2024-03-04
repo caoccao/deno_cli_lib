@@ -3,6 +3,7 @@ pub use deno_core;
 pub use deno_graph;
 pub use deno_npm;
 pub use deno_runtime;
+pub use deno_terminal;
 
 pub mod args;
 pub mod auth_tokens;
@@ -16,6 +17,7 @@ pub mod file_fetcher;
 pub mod graph_util;
 pub mod http_util;
 pub mod js;
+pub mod jsr;
 pub mod lsp;
 pub mod module_loader;
 pub mod napi;
